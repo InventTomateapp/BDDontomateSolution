@@ -1,0 +1,43 @@
+﻿@model IEnumerable<BDDontomate.PRODUCTOS>
+
+@{
+    ViewBag.Title = "Index Productos";
+}
+
+<h2>Lista de Productos</h2>
+
+<p>
+    @Html.ActionLink("Crear Producto", "Create", null, new { @class="btn btn-success"})
+</p>
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IDPRODUCTO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NOMBRE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DESCRIPCION)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDPRODUCTO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOMBRE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DESCRIPCION)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.IDPRODUCTO }, new { @class = "btn btn-success" })
+        </td>
+    </tr>
+}
+
+</table>

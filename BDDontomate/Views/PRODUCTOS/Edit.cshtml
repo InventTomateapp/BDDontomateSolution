@@ -1,0 +1,51 @@
+﻿@model BDDontomate.PRODUCTOS
+
+@{
+    ViewBag.Title = "Editar";
+}
+
+<h2>Editar Producto</h2>
+<div class="col-sm-4 col-md-4 col-lg-4"></div>
+<div class="col-sm-4 col-md-4 col-lg-4">
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>PRODUCTO @Html.HiddenFor(model => model.IDPRODUCTO)</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.IDPRODUCTO)
+
+        <div class="form-group col-md-push-3">
+            @Html.LabelFor(model => model.NOMBRE, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NOMBRE, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NOMBRE, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-push-3">
+            @Html.LabelFor(model => model.DESCRIPCION, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DESCRIPCION, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DESCRIPCION, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-push-3">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-success" />
+                @Html.ActionLink("Cancelar", "Index",null, new { @class="btn btn-danger"})
+            </div>
+        </div>
+    </div>
+}
+</div>
+<div class="col-sm-4 col-md-4 col-lg-4">
+    
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
