@@ -1,7 +1,7 @@
 ﻿@model BDDontomate.PRODUCTOS
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Crear";
 }
 
 <div class="col-sm-3 col-md-3 col-lg-3"></div>
@@ -12,12 +12,12 @@
 
 
         <div class="form-horizontal">
-            <div class="form-group col-md-6 col-md-offset-3">
+            <div class="form-group col-md-6 ">
                 <h4> Crear Productos</h4>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             </div>
-            <div class="form-group col-md-6 col-md-offset-3">
+            <div class="form-group col-md-6 ">
                 @Html.LabelFor(model => model.IDPRODUCTO, htmlAttributes: new { @class = "control-label col-lg-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.IDPRODUCTO, new { htmlAttributes = new { @class = "form-control", @id = "idproducto", @Value = ViewBag.ultimoID } })
@@ -25,7 +25,7 @@
                 </div>
             </div>
 
-            <div class="form-group col-md-6 col-md-offset-3">
+            <div class="form-group col-md-6">
                 @Html.LabelFor(model => model.NOMBRE, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.NOMBRE, new { htmlAttributes = new { @class = "form-control" } })
@@ -33,28 +33,34 @@
                 </div>
             </div>
 
-            <div class="form-group col-md-6 col-md-offset-3">
+            <div class="form-group col-md-6">
                 @Html.LabelFor(model => model.DESCRIPCION, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.DESCRIPCION, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.TextAreaFor(model => model.DESCRIPCION, new { htmlAttributes = new { @class = "form-control" } })
+                    @*@Html.EditorFor(model => model.DESCRIPCION, new { htmlAttributes = new { @class = "form-control" } })*@
                     @Html.ValidationMessageFor(model => model.DESCRIPCION, "", new { @class = "text-danger" })
                 </div>
             </div>
-
-            <div class="form-group col-md-6 col-md-offset-3">
-                <div class="col-md-5">
-                    <input type="submit" value="Crear" class="btn btn-success" />
-                    @Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-warning" })
+           
+            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button-group">
+                <div class="btn-group" role="group" aria-label="Button group Save">
+                    <input type="submit" value="Crear" class="btn btn-primary btn-group-lg" />
+                </div>
+                <div class="btn-group" role="toolbar" aria-label="Button Group Cancel">
+                    @Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-warning btn-group-lg" })
                 </div>
             </div>
+
+            @*<div class="form-group col-md-6">
+                <div class="col-md-5">
+                    
+                   
+                </div>
+            </div>*@
         </div>
     }
 </div>
-    <div class="col-sm-3 col-md-3 col-lg-3"></div>
-  
 
-
-
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
