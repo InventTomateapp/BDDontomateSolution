@@ -11,13 +11,20 @@ namespace BDDontomate
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class PERFILES
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public PERFILES()
+        {
+            this.PERSONAS = new HashSet<PERSONAS>();
+        }
+    
         public int IDPERFIL { get; set; }
         public string NOMBRE { get; set; }
-        [DataType(DataType.MultilineText)]
         public string DESCRIPCION { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PERSONAS> PERSONAS { get; set; }
     }
 }

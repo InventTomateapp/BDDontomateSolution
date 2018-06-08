@@ -8,6 +8,8 @@
         <EntityTypeShape EntityType="BdAppDonTomateModel.Perfiles" Width="1.5" PointX="2.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="BdAppDonTomateModel.PERFILES" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="BdAppDonTomateModel.PRODUCTOS" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BdAppDonTomateModel.PERSONAS" Width="1.5" PointX="3" PointY="4.75" />
+        <AssociationConnector Association="BdAppDonTomateModel.FK_PERSONAS_PERFILES" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

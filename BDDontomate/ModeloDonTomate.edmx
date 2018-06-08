@@ -13,6 +13,17 @@
           <Property Name="NOMBRE" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="DESCRIPCION" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
+        <EntityType Name="PERSONAS">
+          <Key>
+            <PropertyRef Name="IDPERSONA" />
+          </Key>
+          <Property Name="IDPERSONA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SEUDONIMO" Type="varchar" MaxLength="100" />
+          <Property Name="NOMBRES" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="APELLIDOS" Type="varchar" MaxLength="100" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="255" />
+          <Property Name="IDPERFIL" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="PRODUCTOS">
           <Key>
             <PropertyRef Name="IDPRODUCTO" />
@@ -21,9 +32,26 @@
           <Property Name="NOMBRE" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="DESCRIPCION" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <Association Name="FK_PERSONAS_PERFILES">
+          <End Role="PERFILES" Type="Self.PERFILES" Multiplicity="1" />
+          <End Role="PERSONAS" Type="Self.PERSONAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PERFILES">
+              <PropertyRef Name="IDPERFIL" />
+            </Principal>
+            <Dependent Role="PERSONAS">
+              <PropertyRef Name="IDPERFIL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="BdAppDonTomateModelStoreContainer">
           <EntitySet Name="PERFILES" EntityType="Self.PERFILES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PERSONAS" EntityType="Self.PERSONAS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRODUCTOS" EntityType="Self.PRODUCTOS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_PERSONAS_PERFILES" Association="Self.FK_PERSONAS_PERFILES">
+            <End Role="PERFILES" EntitySet="PERFILES" />
+            <End Role="PERSONAS" EntitySet="PERSONAS" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -32,6 +60,11 @@
         <EntityContainer Name="BdAppDonTomateEntities" annotation:LazyLoadingEnabled="true" >
           <EntitySet Name="PERFILES" EntityType="BdAppDonTomateModel.PERFILES" />
           <EntitySet Name="PRODUCTOS" EntityType="BdAppDonTomateModel.PRODUCTOS" />
+          <EntitySet Name="PERSONAS" EntityType="BdAppDonTomateModel.PERSONAS" />
+          <AssociationSet Name="FK_PERSONAS_PERFILES" Association="BdAppDonTomateModel.FK_PERSONAS_PERFILES">
+            <End Role="PERFILES" EntitySet="PERFILES" />
+            <End Role="PERSONAS" EntitySet="PERSONAS" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="PERFILES">
           <Key>
@@ -40,6 +73,7 @@
           <Property Name="IDPERFIL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="DESCRIPCION" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PERSONAS" Relationship="BdAppDonTomateModel.FK_PERSONAS_PERFILES" FromRole="PERFILES" ToRole="PERSONAS" />
         </EntityType>
         <EntityType Name="PRODUCTOS">
           <Key>
@@ -49,6 +83,30 @@
           <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="DESCRIPCION" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="PERSONAS">
+          <Key>
+            <PropertyRef Name="IDPERSONA" />
+          </Key>
+          <Property Name="IDPERSONA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SEUDONIMO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRES" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="APELLIDOS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="IDPERFIL" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PERFILES" Relationship="BdAppDonTomateModel.FK_PERSONAS_PERFILES" FromRole="PERSONAS" ToRole="PERFILES" />
+        </EntityType>
+        <Association Name="FK_PERSONAS_PERFILES">
+          <End Type="BdAppDonTomateModel.PERFILES" Role="PERFILES" Multiplicity="1" />
+          <End Type="BdAppDonTomateModel.PERSONAS" Role="PERSONAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PERFILES">
+              <PropertyRef Name="IDPERFIL" />
+            </Principal>
+            <Dependent Role="PERSONAS">
+              <PropertyRef Name="IDPERFIL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -70,6 +128,18 @@
                 <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
                 <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
                 <ScalarProperty Name="IDPRODUCTO" ColumnName="IDPRODUCTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PERSONAS">
+            <EntityTypeMapping TypeName="BdAppDonTomateModel.PERSONAS">
+              <MappingFragment StoreEntitySet="PERSONAS">
+                <ScalarProperty Name="IDPERFIL" ColumnName="IDPERFIL" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="APELLIDOS" ColumnName="APELLIDOS" />
+                <ScalarProperty Name="NOMBRES" ColumnName="NOMBRES" />
+                <ScalarProperty Name="SEUDONIMO" ColumnName="SEUDONIMO" />
+                <ScalarProperty Name="IDPERSONA" ColumnName="IDPERSONA" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

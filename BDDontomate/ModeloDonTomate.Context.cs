@@ -27,5 +27,6 @@ namespace BDDontomate
     
         public virtual DbSet<PERFILES> PERFILES { get; set; }
         public virtual DbSet<PRODUCTOS> PRODUCTOS { get; set; }
+        public virtual DbSet<PERSONAS> PERSONAS { get; set; }
     }
 }

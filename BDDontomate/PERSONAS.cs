@@ -12,10 +12,15 @@ namespace BDDontomate
     using System;
     using System.Collections.Generic;
     
-    public partial class PRODUCTOS
+    public partial class PERSONAS
     {
-        public string IDPRODUCTO { get; set; }
-        public string NOMBRE { get; set; }
-        public string DESCRIPCION { get; set; }
+        public int IDPERSONA { get; set; }
+        public string SEUDONIMO { get; set; }
+        public string NOMBRES { get; set; }
+        public string APELLIDOS { get; set; }
+        public string EMAIL { get; set; }
+        public int IDPERFIL { get; set; }
+    
+        public virtual PERFILES PERFILES { get; set; }
     }
 }
